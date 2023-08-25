@@ -14,6 +14,16 @@ export default function Modal(props){
         show(false);
     }
 
+    const convertKelvinToCelcius = (num) => {
+        let celcius = Math.round(num - 273.15);
+        return celcius;
+    }
+
+    const convertToKM = (num) => {
+        let km = num/1000
+        return km.toFixed(2);
+    }
+
     return (
         <>
             <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -40,26 +50,26 @@ export default function Modal(props){
                             />
                             <ul className="flex justify-between">
                                 <li>
-                                    <h3>Main</h3>
+                                    <h3>Forecast</h3>
                                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                    <span className="font-bold">Temp Min:</span>&nbsp;{main.temp_min}<br/>
-                                    <span className="font-bold">Temp Max:</span>&nbsp;{main.temp_max}<br/>
-                                    <span className="font-bold">Humidity:</span>&nbsp;{main.humidity}<br/>
-                                    <span className="font-bold">Pressure:</span>&nbsp;{main.pressure}<br/>
+                                    <span className="font-bold">High:</span>&nbsp;{convertKelvinToCelcius(main.temp_min)}°C<br/>
+                                    <span className="font-bold">Low:</span>&nbsp;{convertKelvinToCelcius(main.temp_max)}°C<br/>
+                                    <span className="font-bold">Humidity:</span>&nbsp;{main.humidity}%<br/>
+                                    <span className="font-bold">Pressure:</span>&nbsp;{main.pressure} mbar<br/>
                                     </p>
                                 </li>
                                 <li>
                                     <h3>Wind</h3>
                                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                        <span className="font-bold">Speed:</span>&nbsp;{wind.speed}<br/>
-                                    <span className="font-bold">Degree:</span>&nbsp;{wind.deg}<br/>
-                                    <span className="font-bold">Gust:</span>&nbsp;{wind.gust}<br/>    
+                                        <span className="font-bold">Speed:</span>&nbsp;{wind.speed} km/h<br/>
+                                        <span className="font-bold">Degree:</span>&nbsp;{wind.deg}°<br/>
+                                        <span className="font-bold">Gust:</span>&nbsp;{wind.gust} km/h<br/>    
                                     </p>
                                 </li>
                                 <li>
                                     <h3>Visibility</h3>
                                     <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                                        {visibility}   
+                                        {convertToKM(visibility)} km  
                                     </p>
                                 </li>
                             </ul>
